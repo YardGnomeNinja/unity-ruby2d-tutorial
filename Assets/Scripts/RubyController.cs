@@ -4,24 +4,59 @@ using UnityEngine;
 
 public class RubyController : MonoBehaviour
 {
+    int currentHealth;
+    public int health { get { return currentHealth; }}
+    float horizontal;
+    float invincibleTimer;
+    bool isInvincible;
+    public int maxHealth = 5;
+    Rigidbody2D rigidbody2d;
+    public float speed = 3.0f;
+    public float timeInvincible = 2.0f;
+    float vertical;
+
     // Start is called before the first frame update
     void Start()
     {
+        rigidbody2d = GetComponent<Rigidbody2D>();
 
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() {
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+
+        if (isInvincible)
+        {
+            invincibleTimer -= Time.deltaTime;
+            if (invincibleTimer < 0)
+                isInvincible = false;
+        }
+    }
+
+    void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        Debug.Log(horizontal);
+        Vector2 position = rigidbody2d.position;
+        position.x = position.x + speed * horizontal * Time.deltaTime;
+        position.y = position.y + speed * vertical * Time.deltaTime;
 
-        float vertical = Input.GetAxis("Vertical");
-        Debug.Log(vertical);
+        rigidbody2d.MovePosition(position);
+    }
 
-        Vector2 position = transform.position;
-        position.x = position.x + 3.0f * horizontal * Time.deltaTime;
-        position.y = position.y + 3.0f * vertical * Time.deltaTime;
-        transform.position = position;
+    public void ChangeHealth(int amount)
+    {
+        if (amount < 0)
+        {
+            if (isInvincible)
+                return;
+            
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+        }
+        
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        Debug.Log(currentHealth + "/" + maxHealth);
     }
 }
