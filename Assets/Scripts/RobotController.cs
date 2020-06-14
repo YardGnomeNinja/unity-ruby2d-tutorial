@@ -9,6 +9,7 @@ public class RobotController : MonoBehaviour
     int direction = 1;
     public float moveDuration = 3.0f;
     float moveTimer;
+    public ParticleSystem smokeEffect;
     Rigidbody2D rigidbody2d;
     public float speed = 3.0f;
     public bool vertical;
@@ -43,6 +44,7 @@ public class RobotController : MonoBehaviour
         broken = false;
         rigidbody2d.simulated = false;
         animator.SetTrigger("Fixed");
+        smokeEffect.Stop();
     }
 
     void FixedUpdate() {
