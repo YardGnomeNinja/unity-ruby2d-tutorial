@@ -5,6 +5,7 @@ using UnityEngine;
 public class RobotController : MonoBehaviour
 {
     Animator animator;
+    bool broken = true;
     int direction = 1;
     public float moveDuration = 3.0f;
     float moveTimer;
@@ -24,6 +25,11 @@ public class RobotController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!broken)
+        {
+            return;
+        }
+
         moveTimer -= Time.deltaTime;
 
         if(moveTimer <= 0) {
@@ -32,7 +38,19 @@ public class RobotController : MonoBehaviour
         }
     }
 
+    public void Fix()
+    {
+        broken = false;
+        rigidbody2d.simulated = false;
+        animator.SetTrigger("Fixed");
+    }
+
     void FixedUpdate() {
+        if(!broken)
+        {
+            return;
+        }
+
         Vector2 position = rigidbody2d.position;
 
         if (vertical)

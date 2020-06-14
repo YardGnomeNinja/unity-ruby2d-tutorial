@@ -246,20 +246,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ruby
       objectReference: {fileID: 0}
-    - target: {fileID: 2400762606762034742, guid: 92a43b2f95458cc47ac115a93a3f99c7,
-        type: 3}
-      propertyPath: timeInvincible
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2400762606762034743, guid: 92a43b2f95458cc47ac115a93a3f99c7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.51
+      value: 2.39
       objectReference: {fileID: 0}
     - target: {fileID: 2400762606762034743, guid: 92a43b2f95458cc47ac115a93a3f99c7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.3
+      value: -1.45
       objectReference: {fileID: 0}
     - target: {fileID: 2400762606762034743, guid: 92a43b2f95458cc47ac115a93a3f99c7,
         type: 3}
