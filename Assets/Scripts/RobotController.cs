@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RobotController : MonoBehaviour
 {
+    Animator animator;
     int direction = 1;
     public float moveDuration = 3.0f;
     float moveTimer;
@@ -15,6 +16,7 @@ public class RobotController : MonoBehaviour
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         moveTimer = moveDuration;
     }
@@ -36,10 +38,14 @@ public class RobotController : MonoBehaviour
         if (vertical)
         {
             position.y = position.y + Time.deltaTime * speed * direction;
+            animator.SetFloat("MoveX", 0);
+            animator.SetFloat("MoveY", direction);
         }
         else
         {
             position.x = position.x + Time.deltaTime * speed * direction;
+            animator.SetFloat("MoveX", direction);
+            animator.SetFloat("MoveY", 0);
         }
 
         rigidbody2d.MovePosition(position);
