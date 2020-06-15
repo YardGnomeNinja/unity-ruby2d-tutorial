@@ -51,9 +51,22 @@ public class RubyController : MonoBehaviour
                 isInvincible = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.C))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             Launch();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
+            if (hit.collider != null)
+            {
+                JambiController character = hit.collider.GetComponent<JambiController>();
+                if (character != null)
+                {
+                    character.DisplayDialog();
+                }
+            }
         }
     }
 
