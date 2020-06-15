@@ -5,6 +5,7 @@ using UnityEngine;
 public class RubyController : MonoBehaviour
 {
     Animator animator;
+    AudioSource audioSource;
     int currentHealth;
     public int health { get { return currentHealth; }}
     float horizontal;
@@ -22,6 +23,7 @@ public class RubyController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         rigidbody2d = GetComponent<Rigidbody2D>();
 
         currentHealth = maxHealth;
@@ -105,5 +107,11 @@ public class RubyController : MonoBehaviour
         projectile.Launch(lookDirection, 300);
 
         animator.SetTrigger("Launch");
+        audioSource.PlayOneShot(projectile.projectileThrown);
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }

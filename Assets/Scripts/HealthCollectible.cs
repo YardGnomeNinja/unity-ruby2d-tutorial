@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HealthCollectible : MonoBehaviour
 {
+    public AudioClip collectedClip;
     public ParticleSystem collectibleEffect;
 
     // Start is called before the first frame update
@@ -31,6 +32,8 @@ public class HealthCollectible : MonoBehaviour
 
                 controller.ChangeHealth(1);
                 Destroy(gameObject);
+
+                controller.PlaySound(collectedClip);
             }
         }
     }

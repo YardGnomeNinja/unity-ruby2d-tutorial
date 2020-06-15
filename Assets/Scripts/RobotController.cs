@@ -5,6 +5,7 @@ using UnityEngine;
 public class RobotController : MonoBehaviour
 {
     Animator animator;
+    AudioSource audioSource;
     bool broken = true;
     int direction = 1;
     public float moveDuration = 3.0f;
@@ -17,8 +18,9 @@ public class RobotController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
 
         moveTimer = moveDuration;
     }
