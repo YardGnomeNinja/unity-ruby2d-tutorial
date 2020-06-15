@@ -8,6 +8,7 @@ public class RobotController : MonoBehaviour
     AudioSource audioSource;
     bool broken = true;
     int direction = 1;
+    public AudioClip repaired;
     public float moveDuration = 3.0f;
     float moveTimer;
     public ParticleSystem smokeEffect;
@@ -47,6 +48,8 @@ public class RobotController : MonoBehaviour
         rigidbody2d.simulated = false;
         animator.SetTrigger("Fixed");
         smokeEffect.Stop();
+        audioSource.Stop();
+        audioSource.PlayOneShot(repaired);
     }
 
     void FixedUpdate() {

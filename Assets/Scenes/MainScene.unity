@@ -6658,6 +6658,11 @@ PrefabInstance:
       propertyPath: moveDuration
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 494634623813482440, guid: a2ffb5f944b5819468637ef58aaadc46,
+        type: 3}
+      propertyPath: repaired
+      value: 
+      objectReference: {fileID: 8300000, guid: e7fa1971a86d60945bb64585c0ac14d5, type: 3}
     - target: {fileID: 494634623813482441, guid: a2ffb5f944b5819468637ef58aaadc46,
         type: 3}
       propertyPath: m_LocalPosition.x

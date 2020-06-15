@@ -7,7 +7,9 @@ public class RubyController : MonoBehaviour
     Animator animator;
     AudioSource audioSource;
     int currentHealth;
+    public AudioClip footsteps;
     public int health { get { return currentHealth; }}
+    public AudioClip hit;
     float horizontal;
     float invincibleTimer;
     bool isInvincible;
@@ -80,6 +82,12 @@ public class RubyController : MonoBehaviour
         position.x = position.x + speed * horizontal * Time.deltaTime;
         position.y = position.y + speed * vertical * Time.deltaTime;
 
+        if (horizontal != 0 || vertical != 0) {
+            if (!audioSource.isPlaying) {
+                audioSource.PlayOneShot(footsteps);
+            }
+        }
+
         rigidbody2d.MovePosition(position);
     }
 
@@ -93,6 +101,7 @@ public class RubyController : MonoBehaviour
             animator.SetTrigger("Hit");
             isInvincible = true;
             invincibleTimer = timeInvincible;
+            audioSource.PlayOneShot(hit);
         }
         
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
